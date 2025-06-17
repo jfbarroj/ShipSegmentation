@@ -1,0 +1,31 @@
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ShipSegmentation"
+authors = [
+  {name = "Raúl Barba Rojas", email = "raul.barba@ubotica.com"},
+  {name = "José Felix Barba Rojas", email = "josefelix.barba@ubotica.com"}
+]
+requires-python = ">= 3.12.3"
+version = "0.1.0-dev"
+dependencies = [
+    "python-dotenv==1.1.0",
+    "numpy==2.3.0",
+    "matplotlib==3.10.3",
+    "PyQt6==6.9.1",
+    "opencv-python==4.11.0.86",
+    "tqdm==4.67.1"
+]
+readme = "README.md"
+
+[project.urls]
+Homepage = "https://github.com/me/"
+"Bug Tracker" = "https://github.com/me/spam/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/shipseg"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
