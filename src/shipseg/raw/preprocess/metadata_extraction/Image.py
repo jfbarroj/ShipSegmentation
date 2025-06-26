@@ -3,7 +3,7 @@ import numpy.typing as npt
 import pathlib
 import cv2
 from dataclasses import dataclass
-from typing import Self, List
+from typing import Self
 
 @dataclass
 class Image:
