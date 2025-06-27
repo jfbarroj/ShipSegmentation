@@ -13,4 +13,5 @@ from dotenv import load_dotenv
 load_dotenv(override=True)
 
 
-DATASET_PATH = os.getenv('DATASET_PATH', 'data/MASATI')
+DATASET_PATH = os.getenv('DATASET_PATH', 'data/raw/MASATI')
+PROCESSED_DATASET_PATH = os.getenv('PROCESSED_DATASET_PATH', 'data/processed/MASATI')

@@ -10,7 +10,7 @@ from pathlib import Path
 
 from tqdm import tqdm
 
-from shipseg.data.preprocess.masks.annotation_to_mask import Annotation2Mask
+from shipseg.raw.preprocess.masks.annotation_to_mask import Annotation2Mask
 from shipseg.utils.config import DATASET_PATH
 
 
