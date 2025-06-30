@@ -1,6 +1,6 @@
 from typing import Self
 from dataclasses import dataclass
-import pathlib
+from pathlib import Path
 
 import numpy as np
 import numpy.typing as npt
@@ -8,12 +8,12 @@ import cv2
 
 @dataclass
 class Image:
-    def __init__(self, data: npt.NDArray[np.uint8], path: pathlib.Path):
+    def __init__(self, data: npt.NDArray[np.uint8], path: Path):
         self.data = data
         self.path = path
 
     @classmethod
-    def from_path(cls, img_path: pathlib.Path) -> Self:
+    def from_path(cls, img_path: Path) -> Self:
         array: cv2.typing.MatLike = cv2.imread(img_path)
         array = array.transpose(2, 0, 1)
         array = array[::-1]

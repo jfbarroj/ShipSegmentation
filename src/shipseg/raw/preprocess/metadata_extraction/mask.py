@@ -1,6 +1,6 @@
 from typing import Self, Tuple
 from dataclasses import dataclass
-import pathlib
+from pathlib import Path
 
 import numpy as np
 import numpy.typing as npt
@@ -10,15 +10,16 @@ from shipseg.raw.preprocess.metadata_extraction.image import Image
 from shipseg.utils.config import DATASET_PATH
 @dataclass
 class Mask:
-    def __init__(self, data: npt.NDArray[np.uint8], path: pathlib.Path):
+    def __init__(self, data: npt.NDArray[np.uint8], path: Path):
         self.data = data
         self.path = path
 
     @classmethod
-    def from_path(cls, path: pathlib.Path) -> Self:
-        img_path = DATASET_PATH / 'images' / f'{path.stem}.png'
+    def from_path(cls, path: Path) -> Self:
+        img_path = Path(DATASET_PATH) / 'images' / f'{path.stem}.png'
         image = Image.from_path(img_path=img_path)
-        array = np.fromfile(path).reshape((image.height,image.width))
+        array = np.fromfile(path, dtype='uint8')
+        array = array.reshape((image.height,image.width))
         return cls(data=array, path=path)
 
     @property
