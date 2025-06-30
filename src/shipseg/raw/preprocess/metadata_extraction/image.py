@@ -1,9 +1,10 @@
+from typing import Self
+from dataclasses import dataclass
+import pathlib
+
 import numpy as np
 import numpy.typing as npt
-import pathlib
 import cv2
-from dataclasses import dataclass
-from typing import Self
 
 @dataclass
 class Image:

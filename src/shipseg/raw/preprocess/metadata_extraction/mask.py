@@ -1,11 +1,13 @@
 from typing import Self, Tuple
+from dataclasses import dataclass
+import pathlib
 
 import numpy as np
 import numpy.typing as npt
-import pathlib
 import cv2
-from dataclasses import dataclass
 
+from shipseg.raw.preprocess.metadata_extraction.image import Image
+from shipseg.utils.config import DATASET_PATH
 @dataclass
 class Mask:
     def __init__(self, data: npt.NDArray[np.uint8], path: pathlib.Path):
@@ -14,8 +16,10 @@ class Mask:
 
     @classmethod
     def from_path(cls, path: pathlib.Path) -> Self:
-        mask_data = cv2.imread(path)
-        return cls(data = mask_data, path = path)
+        img_path = DATASET_PATH / 'images' / f'{path.stem}.png'
+        image = Image.from_path(img_path=img_path)
+        array = np.fromfile(path).reshape((image.height,image.width))
+        return cls(data=array, path=path)
 
     @property
     def blobs(self) -> Tuple[np.ndarray]:
