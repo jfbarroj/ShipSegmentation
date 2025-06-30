@@ -25,6 +25,14 @@ class Image:
     @property
     def n_bands(self) -> int:
         return self.data.shape[0]
+    
+    @property
+    def height(self) -> int:
+        return self.data.shape[1]
+    
+    @property
+    def width(self) -> int:
+        return self.data.shape[2]
 
     def get_min(self, channel: int) -> int:
         return int(self.data[channel].min())
