@@ -28,7 +28,7 @@ class ImageMetadata:
         # TODO: USE RELATIVE_TO (MASATI as main folder)
         image = Image.from_path(img_path)
         mask = Mask.from_path(mask_path)
-        return cls(img_id=image.img_id, img_path=img_path, mask_path=mask_path,
+        return cls(img_id=image.img_id, img_path=image.path, mask_path=mask.path,
                    n_bands=image.n_bands, height=image.height, width=image.width, min_red=image.get_min(0), min_green=image.get_min(1),
                    min_blue=image.get_min(2), max_red=image.get_max(0), max_green=image.get_max(1),
                    max_blue=image.get_max(2), n_ships=mask.n_blobs)

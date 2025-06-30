@@ -6,6 +6,8 @@ import numpy as np
 import numpy.typing as npt
 import cv2
 
+from shipseg.utils.config import DATASET_PATH
+
 @dataclass
 class Image:
     def __init__(self, data: npt.NDArray[np.uint8], path: Path):
@@ -14,10 +16,10 @@ class Image:
 
     @classmethod
     def from_path(cls, img_path: Path) -> Self:
-        array: cv2.typing.MatLike = cv2.imread(img_path)
+        array: cv2.typing.MatLike = cv2.imread(img_path.resolve())
         array = array.transpose(2, 0, 1)
         array = array[::-1]
-        return cls(data = array, path = img_path)
+        return cls(data = array, path = img_path.relative_to(Path(DATASET_PATH)))
 
     @property
     def img_id(self) -> str:

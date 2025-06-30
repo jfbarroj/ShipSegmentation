@@ -20,7 +20,7 @@ class Mask:
         image = Image.from_path(img_path=img_path)
         array = np.fromfile(path, dtype='uint8')
         array = array.reshape((image.height,image.width))
-        return cls(data=array, path=path)
+        return cls(data=array, path=path.relative_to(DATASET_PATH))
 
     @property
     def blobs(self) -> Tuple[np.ndarray]:
